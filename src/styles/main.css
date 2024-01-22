@@ -8,7 +8,7 @@
     justify-content: center;
 }
 
-.bg-video .video {    
+.bg-video .video {
     height: 100vh;
 }
 
@@ -33,7 +33,7 @@
     width: 35%;
     min-width: 300px;
     display: flex;
-    flex-direction: column ;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
 }
@@ -123,12 +123,13 @@
 .card-infield {
     height: 11.2rem;
     width: 8rem;
-    border-radius: 8px;   
+    border-radius: 8px;
+    border: 1px solid #fff;
 }
 
 
 .card {
-    transition: ease; 
+    transition: ease;
 }
 
 .card:hover {
