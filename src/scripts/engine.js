@@ -79,15 +79,15 @@ async function createCardImage(randomIdCard, fieldSide) {
 
 
 async function setCardsField(cardId) {
-    await removeAllCardsImages();
+    // await removeAllCardsImages();
 
     let computerCardId = await getRandomCardId();
 
     state.fieldCards.player.style.display = 'block';
     state.fieldCards.computer.style.display = 'block';
 
-    state.fieldSide.player.src = cardData[cardId].img;
-    state.fieldSide.computer.src = cardData[cardId].img;
+    state.fieldCards.player.src = cardData[cardId].img;
+    state.fieldCards.computer.src = cardData[computerCardId].img;
 
     let duelResults = await checkDuelResults(cardId, computerCardId);
 
