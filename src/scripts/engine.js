@@ -19,7 +19,7 @@ const state = {
         computerPlayer: "computer-cards",
         computerPlayerBox: document.querySelector("#computer-cards"),
     },
-    action: {
+    actions: {
         button: document.getElementById("next-duel")
     }
 };
@@ -80,7 +80,7 @@ async function createCardImage(randomIdCard, fieldSide) {
 };
 
 
-async function setCardsField(cardId) {
+async function setCardsField(playerCardId) {
     await removeAllCardsImages();
 
     let computerCardId = await getRandomCardId();
@@ -88,18 +88,44 @@ async function setCardsField(cardId) {
     state.fieldCards.player.style.display = 'block';
     state.fieldCards.computer.style.display = 'block';
 
-    state.fieldCards.player.src = cardData[cardId].img;
+    state.fieldCards.player.src = cardData[playerCardId].img;
     state.fieldCards.computer.src = cardData[computerCardId].img;
 
-    let duelResults = await checkDuelResults(cardId, computerCardId);
+    let duelResults = await checkDuelResults(playerCardId, computerCardId);
 
     await updateScore();
     await drawButton(duelResults);
 }
 
+async function updateScore() {
+    state.score.scoreBox.innerText = `Win: ${state.score.plaeyrScore} | Lose:  ${state.score.computerSocre}`;
+}
+
+
+async function drawButton(text) {
+    state.actions.button.innerText = text;
+    state.actions.button.style.display = "block";
+}
+
+async function checkDuelResults(playerCardId, computerCardId) {
+    let duelResults = "Empate";
+    let playerCard = cardData[playerCardId];
+
+    if (playerCard.WinOf.includes(computerCardId)) {
+        duelResults = "Ganhou";
+        state.score.plaeyrScore++; 
+    }
+
+    if(playerCard.LoseOf.includes(computerCardId)) {
+        duelResults = "Perdeu";
+        state.score.computerSocre++;
+    }
+
+    return duelResults;
+}
+
 async function removeAllCardsImages() {
     let {yourPlayerBox, computerPlayerBox } = state.playerSides;
-    console.log(yourPlayerBox, computerPlayerBox);
     let imgElements = yourPlayerBox.querySelectorAll("img");
 
     imgElements.forEach((img) => img.remove());
