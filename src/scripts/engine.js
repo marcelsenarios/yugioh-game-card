@@ -154,7 +154,7 @@ async function drawCards(cardNumbers, fieldSide) {
 
 async function resetDuel() {
     state.cardSprites.avatar.src = '';
-    state.actions.button.display = 'none';
+    state.actions.button.style.display = 'none';
     state.fieldCards.player.src = '';
     state.fieldCards.computer.src = '';
 
