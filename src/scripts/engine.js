@@ -186,6 +186,9 @@ function init() {
     ShowHiddenCardFieldsImages(false);
     drawCards(5, state.playerSides.yourPlayer);
     drawCards(5, state.playerSides.computerPlayer);
+
+    const bgm = document.getElementById("bgm");
+    bgm.play();
 }
 
 init();
